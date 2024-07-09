@@ -1,0 +1,20 @@
+# 使用官方Python镜像作为基础镜像
+FROM python:3.8
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制当前目录下的文件到工作目录
+COPY . /app
+
+# 安装依赖
+RUN pip install -r requirements.txt
+
+# 更改用户为root，以便创建日志目录
+RUN useradd -u 1000 appuser
+USER root
+RUN mkdir -p /app/logs
+USER appuser
+
+# 设置CMD指令，运行Python脚本并重定向日志
+CMD python my_script.py > /app/logs/output.log 2>&1
