@@ -28,6 +28,7 @@ class username(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(255))
     pwd = Column(String(255))
+    print(1111)
 
 # 初始化数据库连接:
 engine = create_engine('mysql+pymysql://root:Ysjzx221@39.98.35.147:3306/test?connect_timeout=30')
